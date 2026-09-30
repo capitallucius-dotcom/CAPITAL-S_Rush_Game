@@ -1,0 +1,795 @@
+body {
+    background-color: #111111;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: gold;
+    letter-spacing: 3px;
+}
+
+h2 {
+    color: white;
+}
+
+
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #333333,
+            #111111 60%
+        );
+
+    z-index: 100;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+}
+
+#startScreen h1 {
+    color: gold;
+
+    font-size: 45px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 10px gold,
+        0 0 25px gold;
+}
+
+#startScreen p {
+    color: white;
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 35px;
+}
+
+#screenStartButton {
+    padding: 16px 45px;
+
+    background-color: gold;
+
+    color: black;
+
+    border: 3px solid white;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px gold,
+        0 0 25px gold;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#screenStartButton:active {
+    transform: scale(0.95);
+
+    box-shadow:
+        0 0 5px gold;
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game {
+    width: 90%;
+    height: 300px;
+
+    margin: 20px auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            white 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 30% 40%,
+            white 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 50% 15%,
+            white 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 70% 35%,
+            white 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            white 1px,
+            transparent 2px
+        ),
+        #222222;
+
+    border: 3px solid gold;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+
+/* =========================
+   GROUND
+========================= */
+
+.game::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 15px;
+
+    background-color: #555555;
+
+    border-top: 3px solid gold;
+
+    z-index: 0;
+}
+
+
+/* =========================
+   ROAD
+========================= */
+
+.game::before {
+    content: "";
+
+    position: absolute;
+
+    bottom: 18px;
+    left: 0;
+
+    width: 200%;
+    height: 8px;
+
+    background:
+        repeating-linear-gradient(
+            to right,
+            gold 0px,
+            gold 50px,
+            transparent 50px,
+            transparent 100px
+        );
+
+    animation:
+        roadMove 1s linear infinite;
+
+    z-index: 1;
+}
+
+@keyframes roadMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100px);
+    }
+
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+.player {
+    width: 40px;
+    height: 65px;
+
+    position: absolute;
+
+    bottom: 18px;
+    left: 50px;
+
+    z-index: 5;
+
+    background-color: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    animation:
+        playerRun 0.25s infinite alternate;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+/* HEAD */
+
+.player::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8px;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: #d99a6c;
+
+    border: 2px solid gold;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px gold;
+}
+
+
+/* BODY */
+
+.player::after {
+    content: "";
+
+    position: absolute;
+
+    top: 26px;
+    left: 9px;
+
+    width: 22px;
+    height: 25px;
+
+    background-color: red;
+
+    border: 2px solid gold;
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 0 10px red;
+}
+
+
+/* RUNNING */
+
+@keyframes playerRun {
+
+    from {
+        margin-bottom: 0;
+    }
+
+    to {
+        margin-bottom: 3px;
+    }
+
+}
+
+
+/* =========================
+   PLAYER LEGS
+========================= */
+
+.playerLegs {
+    position: absolute;
+
+    top: 50px;
+    left: 9px;
+
+    width: 24px;
+    height: 15px;
+
+    z-index: 1;
+}
+
+.playerLegs::before {
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+
+    width: 8px;
+    height: 15px;
+
+    background-color: black;
+
+    border: 2px solid gold;
+
+    border-radius: 5px;
+
+    transform: rotate(12deg);
+}
+
+.playerLegs::after {
+    content: "";
+
+    position: absolute;
+
+    right: 2px;
+
+    width: 8px;
+    height: 15px;
+
+    background-color: black;
+
+    border: 2px solid gold;
+
+    border-radius: 5px;
+
+    transform: rotate(-12deg);
+}
+
+
+/* =========================
+   OBSTACLE
+========================= */
+
+.obstacle {
+    width: 30px;
+    height: 50px;
+
+    background-color: green;
+
+    position: absolute;
+
+    bottom: 18px;
+
+    right: -80px;
+
+    z-index: 5;
+
+    border: 2px solid white;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   COIN
+========================= */
+
+.coin {
+    width: 20px;
+    height: 20px;
+
+    background-color: gold;
+
+    border: 3px solid white;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    bottom: 65px;
+
+    right: -30px;
+
+    z-index: 5;
+
+    box-shadow:
+        0 0 15px gold;
+
+    animation:
+        coinGlow 0.7s infinite alternate;
+}
+
+@keyframes coinGlow {
+
+    from {
+        box-shadow:
+            0 0 5px gold;
+    }
+
+    to {
+        box-shadow:
+            0 0 20px gold;
+    }
+
+}
+
+
+/* =========================
+   HEALTH
+========================= */
+
+.health {
+    position: absolute;
+
+    bottom: 80px;
+
+    left: -60px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 30px;
+
+    line-height: 40px;
+
+    z-index: 5;
+
+    filter:
+        drop-shadow(0 0 8px red);
+
+    animation:
+        heartBeat 0.8s infinite alternate;
+}
+
+@keyframes heartBeat {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+
+}
+
+
+/* =========================
+   COIN MESSAGE
+========================= */
+
+#coinMessage {
+    position: absolute;
+
+    left: 50px;
+    bottom: 90px;
+
+    color: gold;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    z-index: 20;
+
+    display: none;
+
+    text-shadow:
+        0 0 10px gold;
+}
+
+
+/* =========================
+   START BUTTON
+========================= */
+
+#startButton {
+    background-color: black;
+
+    color: gold;
+
+    border: 2px solid gold;
+
+    border-radius: 10px;
+
+    padding: 12px 30px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(255, 215, 0, 0.4);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#startButton:active {
+    transform: scale(0.95);
+
+    box-shadow:
+        0 0 15px gold;
+}
+
+
+/* =========================
+   JUMP BUTTON
+========================= */
+
+#jumpButton {
+    background-color: gold;
+
+    color: black;
+
+    border: 3px solid white;
+
+    border-radius: 50%;
+
+    width: 110px;
+    height: 110px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 20px;
+
+    box-shadow:
+        0 0 15px gold;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#jumpButton:active {
+    transform: scale(0.92);
+
+    box-shadow:
+        0 0 25px gold;
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+#gameOverScreen {
+    display: none;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(80, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.96) 70%
+        );
+
+    color: white;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    padding-top: 45px;
+
+    z-index: 10;
+
+    backdrop-filter: blur(3px);
+}
+
+
+/* GAME OVER TITLE */
+
+#gameOverScreen h2 {
+    font-size: 42px;
+
+    color: red;
+
+    margin: 0 0 20px 0;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 8px red,
+        0 0 20px red;
+}
+
+
+/* FINAL SCORE */
+
+#gameOverScreen p {
+    color: gold;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+}
+
+
+/* FINAL SCORE NUMBER */
+
+#finalScore {
+    color: white;
+
+    font-size: 30px;
+
+    text-shadow:
+        0 0 10px white;
+}
+
+
+/* =========================
+   HIGH SCORE
+========================= */
+
+#highScoreText {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border: 2px solid gold;
+
+    border-radius: 12px;
+
+    background-color:
+        rgba(255, 215, 0, 0.08);
+
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.5);
+
+    color: gold;
+
+    font-size: 23px;
+
+    margin: 15px auto 25px auto;
+}
+
+
+/* HIGH SCORE NUMBER */
+
+#highScore {
+    color: white;
+
+    font-size: 30px;
+
+    text-shadow:
+        0 0 10px gold;
+}
+
+
+/* =========================
+   RESTART BUTTON
+========================= */
+
+#restartButton {
+    background-color: gold;
+
+    color: black;
+
+    border: 3px solid white;
+
+    border-radius: 10px;
+
+    padding: 13px 30px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px gold,
+        0 0 25px rgba(255, 215, 0, 0.5);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#restartButton:active {
+    transform: scale(0.95);
+
+    box-shadow:
+        0 0 8px gold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .game {
+        width: 94%;
+        height: 280px;
+        margin-top: 15px;
+    }
+
+    #startScreen h1 {
+        font-size: 36px;
+        letter-spacing: 3px;
+    }
+
+    #gameOverScreen {
+        padding-top: 40px;
+    }
+
+    #gameOverScreen h2 {
+        font-size: 34px;
+    }
+
+    #gameOverScreen p {
+        font-size: 19px;
+    }
+
+    #highScoreText {
+        font-size: 20px;
+        padding: 8px 14px;
+    }
+
+    #jumpButton {
+        width: 100px;
+        height: 100px;
+    }
+
+}
