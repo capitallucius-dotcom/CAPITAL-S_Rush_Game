@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>CAPITAL RUSH</title>
+
+    <link rel="stylesheet" href="Game.css">
+
+</head>
+
+<body>
+
+    <div id="startScreen">
+
+        <h1>⚡ CAPITAL RUSH</h1>
+
+        <p>Run. Collect. Survive.</p>
+
+        <button id="screenStartButton">
+            ▶ START GAME
+        </button>
+
+    </div>
+
+
+    <h1>⚡ CAPITAL RUSH</h1>
+
+
+    <h2>
+
+        Score:
+        <span id="score">0</span>
+
+        |
+
+        Level:
+        <span id="level">1</span>
+
+        |
+
+        ❤️ Lives:
+        <span id="lives">3</span>
+
+        |
+
+        🏆 Best:
+        <span id="liveHighScore">0</span>
+
+    </h2>
+
+
+    <button id="startButton">
+        START GAME
+    </button>
+
+
+    <div class="game">
+
+        <div class="player">
+
+            <div class="playerLegs"></div>
+
+        </div>
+
+
+        <div class="obstacle"></div>
+
+
+        <div class="coin"></div>
+
+
+        <div id="coinMessage">
+            +2
+        </div>
+
+
+        <div class="health">
+            ❤️
+        </div>
+
+
+        <div id="gameOverScreen">
+
+            <h2>
+                GAME OVER
+            </h2>
+
+
+            <p>
+
+                Final Score:
+                <span id="finalScore">0</span>
+
+            </p>
+
+
+            <p id="highScoreText">
+
+                🏆 HIGH SCORE:
+                <span id="highScore">0</span>
+
+            </p>
+
+
+            <button id="restartButton">
+                RESTART
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button id="jumpButton">
+        🦘 JUMP
+    </button>
+
+
+    <script src="Game.js"></script>
+
+</body>
+
+</html>
